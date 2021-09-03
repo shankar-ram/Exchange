@@ -206,6 +206,10 @@ function App() {
     }
   })
   
+
+  //fulltrade
+  const [fulltradeType,setfulltradeType]=React.useState('')
+  const [fulltradeSellType,setFulltradeSellType]=React.useState('')
   
   const [users_USDT,setUsers_USDT]= React.useState([])
   const [users_BTC,setUsers_BTC]= React.useState([])
@@ -1473,10 +1477,25 @@ const notify = (place) => {
     }}></Input>
 
               <Button size="lg" className="bg-dark"  style={{margin:"2rem 0 2rem 0",display:"block",width:"100%"}}  onClick={()=>{
-                  setExit(true)
+                   setfulltradeType("LIMIT")
+                  const tempQ=finalQuants;
+      tempQ.push(quant[quant.length-1])
+      const tempP=finalPrices;
+      tempP.push(pricee[pricee.length-1])
+      localStorage.setItem(`purchased_quantity_${pair}`,parseFloat(quant[quant.length-1]))
+      setFinalQuants(tempQ)
+      setFinalPrices(tempP)
+      setQuant([])
+      setPrice([])
+     //console.log("final quant is",finalQuants,"final price is",finalPrices);
+        setcurr(quant)
+        set_bought_price(pricee)
+        setExit(true)
               }}>Next Exits {`>`}</Button>
             </Form>
             </TabPanel>
+
+
             <TabPanel>
             <Form  style={{marginBottom:"1rem"}}>
               <Label>Price  ( {`${pair.substr(pair.indexOf('/')+1,pair.length)}`} )</Label>
@@ -1515,6 +1534,23 @@ const notify = (place) => {
       
     }}></Input>
      <Button size="lg" className="bg-dark"  style={{margin:"2rem 0 2rem 0",display:"block",width:"100%"}}  onClick={()=>{
+
+          setfulltradeType("MARKET")
+                     var tempPrice=pricee;
+     tempPrice.push(pair == "BTC/USDT" ? liveprice_BTC : pair == "BTC/INRD" ? parseFloat(liveprice_BTC*conversion).toFixed(2) : pair == "ETH/USDT" ? liveprice_ETH : pair == "ETH/INRD" ? parseFloat(liveprice_ETH*conversion).toFixed(2) : pair == "BNB/USDT" ? liveprice_BNB : pair == "BNB/INRD" ? parseFloat(liveprice_BNB*conversion).toFixed(2) : pair == "KSM/USDT" ? liveprice_KSM : pair == "KSM/INRD" ? parseFloat(liveprice_KSM*conversion).toFixed(2) : pair =="ATA/USDT"? liveprice_ATA : pair=="ATA/INRD" ? parseFloat(liveprice_ATA*conversion).toFixed(2) : pair=="MANA/USDT"? liveprice_MANA : pair=="MANA/INRD" ? parseFloat(liveprice_MANA*conversion).toFixed(2) : pair=="DGB/USDT"?liveprice_DGB: pair=="DGB/INRD"? parseFloat(liveprice_DGB*conversion).toFixed(2) : pair=="FTM/USDT"?liveprice_FTM: pair=="FTM/INRD"? parseFloat(liveprice_FTM*conversion).toFixed(2) : pair=="ALICE/USDT"?liveprice_ALICE: pair=="ALICE/INRD"? parseFloat(liveprice_ALICE*conversion).toFixed(2) : pair=="GTC/USDT"?liveprice_GTC: pair=="GTC/INRD"? parseFloat(liveprice_GTC*conversion).toFixed(2) : pair=="MATIC/USDT"?liveprice_MATIC: pair=="MATIC/INRD"? parseFloat(liveprice_MATIC*conversion).toFixed(2):pair=="AXS/USDT"?liveprice_AXS: pair=="AXS/INRD"? parseFloat(liveprice_AXS*conversion).toFixed(2): pair=="FTT/USDT"?liveprice_FTT: pair=="FTT/INRD"? parseFloat(liveprice_FTT*conversion).toFixed(2) :pair=="SOL/USDT"?liveprice_SOL: pair=="SOL/INRD"? parseFloat(liveprice_SOL*conversion).toFixed(2) :pair=="RUNE/USDT"?liveprice_RUNE: pair=="RUNE/INRD"? parseFloat(liveprice_RUNE*conversion).toFixed(2) :pair=="UNI/USDT"?liveprice_UNI: pair=="UNI/INRD"? parseFloat(liveprice_UNI*conversion).toFixed(2):pair=="DOT/USDT"?liveprice_DOT: pair=="DOT/INRD"? parseFloat(liveprice_DOT*conversion).toFixed(2) :pair=="VET/USDT"?liveprice_VET: pair=="VET/INRD"? parseFloat(liveprice_VET*conversion).toFixed(2):pair=="TFUEL/USDT"?liveprice_TFUEL: pair=="TFUEL/INRD"? parseFloat(liveprice_TFUEL*conversion).toFixed(2):pair=="GRT/USDT"?liveprice_GRT: pair=="GRT/INRD"? parseFloat(liveprice_GRT*conversion).toFixed(2):pair=="ADA/USDT"?liveprice_ADA: pair=="ADA/INRD"? parseFloat(liveprice_ADA*conversion).toFixed(2):pair=="FIL/USDT"?liveprice_FIL: pair=="FIL/INRD"? parseFloat(liveprice_FIL*conversion).toFixed(2):pair=="LINK/USDT"?liveprice_LINK: pair=="LINK/INRD"? parseFloat(liveprice_LINK*conversion).toFixed(2):pair=="LUNA/USDT"?liveprice_LUNA: pair=="LUNA/INRD"? parseFloat(liveprice_LUNA*conversion).toFixed(2):pair=="THETA/USDT"?liveprice_THETA: parseFloat(liveprice_THETA*conversion).toFixed(2));
+     setPrice(tempPrice);
+    const tempQ=finalQuants;
+    tempQ.push(quant[quant.length-1])
+    const tempP=finalPrices;
+    tempP.push(pricee[pricee.length-1])
+    localStorage.setItem(`purchased_quantity_${pair}`,parseFloat(quant[quant.length-1]))
+    setFinalQuants(tempQ)
+    setFinalPrices(tempP)
+    setQuant([])
+    setPrice([])
+     //console.log("final quant is",finalQuants,"final price is",finalPrices);
+    setcurr(quant)
+    set_bought_price(pricee)
                   setExit(true)
               }}>Next Exits {`>`}</Button>
     </Form>
@@ -1555,39 +1591,131 @@ const notify = (place) => {
 
                       <TabPanel>
                         <Form style={{marginTop:"0.5rem"}}>
-                        <Label>Trigger Price</Label>
-                        <Input></Input>
+                        <Label>Selling Price</Label>
+  <Input  name="price_sell" onChange={(event)=>{
+     const tempPrice=pricee;
+     tempPrice.push(event.target.value)
+     setPrice(tempPrice)
+     // setsell_price(parseFloat(event.target.value) )
 
-                        <Label>Profit</Label>
-                        <Input></Input>
-                        <Slider
-        defaultValue={30}
-        getAriaValueText={(value)=>{
-        }}
-        aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={0}
-        max={100}
-      />
-                           <Label>Quantity</Label>
-                        <Input></Input>
-                        <Slider
-        defaultValue={30}
-        getAriaValueText={(value)=>{
-        }}
-        aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={0}
-        max={100}
-      />
-          <Button size="lg" className="bg-dark" style={{display:"block",width:"100%",marginBottom:"2rem"}}>Add Target </Button>
-          {/* <Button size="md" className="bg-primary" style={{display:"block",width:"100%"}} onClick={()=>{
-            setExit(false)
-          }}>Place Fulltrade </Button> */}
+   }}></Input>
+
+<Label>Selling Amount</Label>
+  <Input style={{color:"white"}} disabled  value={full_trade_sell} name="quantity_sell" onChange={(event)=>{
+     if(parseFloat(finalQuants[0])-parseFloat(event.target.value) < 0 ){
+       //alert("Cannot sell more than you buy");
+     }
+     else if(parseFloat(localStorage.getItem(`purchased_quantity_${pair}`))-parseFloat(event.target.value)<0){
+       //alert(`Only ${parseFloat(localStorage.getItem("purchased_quantity"))-parseFloat(event.target.value)} Left to sell`)
+     }
+     else{
+       if(finalQuants.length == 1){
+         localStorage.setItem(`purchased_quantity_${pair}`,parseFloat(finalQuants[0])-parseFloat(event.target.value))
+       }
+       else{
+       localStorage.setItem(`purchased_quantity_${pair}`,parseFloat(localStorage.getItem(`purchased_quantity_${pair}`))-parseFloat(event.target.value))
+       }
+       const tempQuant=quant;
+       tempQuant.push(event.target.value)
+       setQuant(tempQuant)
+     }
+       // setsell_quantity(parseFloat(event.target.value) )
+
+   }}> </Input>
+ 
+ <Slider
+       defaultValue={30}
+       getAriaValueText={(value)=>{set_full_trade_sell(localStorage.getItem(`purchased_quantity_${pair}`)*value/100)
+       quant.push(localStorage.getItem(`purchased_quantity_${pair}`)*value/100)
+       if(value == 100){
+         setcontinueselling(true)
+       }
+       else{
+         setcontinueselling(false)
+       }
+     }
+   
+     }
+       aria-labelledby="discrete-slider"
+       valueLabelDisplay="auto"
+       step={10}
+       marks
+       min={0}
+       max={100}
+     />
+   
+    
+  <Button type="reset" className="bg-dark" disabled={continueselling}  onClick={()=>{
+  
+   const tempQ=finalQuants;
+   tempQ.push(quant[quant.length-1])
+   const tempP=finalPrices;
+   tempP.push(pricee[pricee.length-1])
+   setFinalQuants(tempQ)
+   setFinalPrices(tempP)
+   setFulltradeSellType("MARKET")
+    //console.log("final quant is",finalQuants,"final price is",finalPrices);
+   //alert(quant)
+    const ans = localStorage.getItem(`purchased_quantity_${pair}`)-quant[quant.length-1]
+    localStorage.setItem(`purchased_quantity_${pair}`,ans)
+  }}>Add Target</Button>
+    
+
+<Button type="reset" className="bg-success" disabled={!continueselling} onClick={()=>{
+   const tempQ=finalQuants;
+   tempQ.push(quant[quant.length-1])
+   const tempP=finalPrices;
+   tempP.push(pricee[pricee.length-1])
+   setFinalQuants(tempQ)
+   setFinalPrices(tempP)
+   setFulltradeSellType("MARKET")
+   // setQuant([])
+   // setPrice([])
+    //console.log("final quant is",finalQuants,"final price is",finalPrices);
+    setswitchtrade(true)
+ axios({
+   method : "POST",
+   url : "https://api.anteagle.tech/full_trade",
+   headers : {
+     "Accept" : "application, text/plain, */*",
+     "Content-Type" : "application/json"
+   },
+   data : JSON.stringify({
+     prices : finalPrices,
+     quantities : finalQuants,
+     pair : pair,
+     type :fulltradeType,
+     userid:localStorage.getItem("userid")
+   })
+ }).then(res=>{
+   if(res.data.success){
+    
+     var total=finalPrices[0]*finalQuants[0];
+     console.log(total)
+     var first = pair.substring(0,pair.indexOf("/"))
+     var second=pair.substring(pair.indexOf("/")+1, pair.length)
+     const tem = (parseFloat(localStorage.getItem(`${second}_Coins`)) - total).toFixed(3)
+     const c= pair.substr(pair.lastIndexOf("/")+1,pair.length).toLowerCase()
+     alert(tem);
+     alert(c);
+     axios({
+       method:"post",
+       url : `https://api.anteagle.tech/get${c}?coins=${tem}&userid=${localStorage.getItem("userid")}`,
+       headers:{
+         "Accept": "application/json"
+       }
+     }).then(res=>{
+       console.log(res.data);
+       swal("Success","Order Submitted Successfully it will execute as you have decided","success")
+       setExit(true)
+     })
+     setFinalPrices([])
+     setFinalQuants([])
+   }
+ })
+
+ 
+  }}>Submit fulltrade</Button>
                         </Form>
 
                       </TabPanel>
@@ -1684,7 +1812,7 @@ const notify = (place) => {
         
         </Tabs>
       </Row>
-      {exit? 
+      {exit ? 
       <>
       <Row>
       
@@ -1693,10 +1821,23 @@ const notify = (place) => {
       <thead>
         <tr>
           <th>Type</th>
+          <th>Mode</th>
           <th>Price</th>
-          <th>Profit</th>
           <th>Amount</th>
         </tr>
+        { finalPrices.map((ans,i)=>{
+                  return(
+                        <>
+                        <tr>
+                        <td style={{textAlign:"center"}}> {i>0?fulltradeSellType:fulltradeType}</td>
+                        <td style={{textAlign:"center"}}> {i > 0 ? 'Sell' : 'Buy'}</td>
+                        <td style={{textAlign:"center"}}>{ans}</td>
+                        <td style={{textAlign:"left"}}>{finalQuants[i]}</td>
+                        </tr>
+                        </>
+                  )
+                  })
+                }
       </thead>
       <tbody>
       
