@@ -1,109 +1,63 @@
 import React, { useState } from 'react'
-import 'bootstrap/dist/js/bootstrap.bundle'
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../src/FInalCryptologo.png'
+import logo from './FInalCryptologo.png'
 import logo2 from '../src/anteagle_1.png'
-import "./home.css"
-import {NavLink} from 'react-router-dom'
-const NavBar=()=>{
 
+import "./home.css"
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText,
+  Button
+} from 'reactstrap';
+import Dropdown from '@restart/ui/esm/Dropdown';
+import { NavDropdown} from 'react-bootstrap';
+import NavbarToggle from 'react-bootstrap/esm/NavbarToggle';
+import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse';
+
+
+const NavBar=()=>{
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
    return(
      <>
-     <div className=" bar container-fluid nav_bg" >
-      <div className="row">
-      
-        <div className="col-12 mx-auto">
-
-       
-  <nav className=" nb navbar  fixed-top navbar-expand-lg navbar-dark ">
-
-    <div className="container-fluid col-11">
-    <div>
-    <img src={logo}  class="img-fluid img-thumbnail rounded-circle"style={{width:"80px",marginLeft:"-1.3rem",marginTop:"0.2rem"}}></img>
-      
-      <NavLink className="navbar-brand " to="#" style={{width:"3rem",marginLeft:"1rem"}}>AntEagle Exchange </NavLink>
-      <p style={{marginLeft:"5.3rem",marginTop:"-2rem"}}><NavLink style={{textDecoration:"none",color:"white"}} to="">By the traders for the traders</NavLink></p>
-    </div>
     
     
-      <button className="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon "></span>
-      </button>
-     
-     
-
-    
-
-    
-      <div className="collapsed">
-
-      <div className="  collapse navbar-collapse " id="navbarSupportedContent">
-        
-        <ul className="navbar-nav  ml-lg-auto mb-2 mb-lg-0">
-          <li className="nav-item ">
-            <NavLink activeClassName="menu_active" className="nav-link active" aria-current="page" to="c#a">Home</NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink activeClassName="menu_active" className="nav-link" to="a#b">AntNet</NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink activeClassName="menu_active" className="nav-link" to="b#x">Services</NavLink>
-          </li>
-          
-       
-            </ul>
-           
-            
-            <ul className="  navbar-nav ml-lg-auto mb-2 mb-lg-0">
-              <li className="nav-item mr-auto">
-          
-                <button type="button" class="btn  btn-lg regist_log"  onClick={()=>{
+     <div>
+      <Navbar fixed="top"  dark expand="md" style={{padding:"1% 3% 2%",backgroundColor:" #200F21"}}>
+        <NavbarBrand href="/"> <img src={logo}  class="img-fluid img-thumbnail rounded-circle"style={{width:"75px"}}></img> AntEagle Exchange<br/><p style={{fontSize:"15px",marginLeft:"5rem",marginTop:"-2rem"}}>By the traders for the traders</p></NavbarBrand>
+        <NavbarToggler onClick={toggle} style={{color:"black"}}/>
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ms-auto" navbar>
+            <NavItem className="items">
+              <NavLink activeClassName="menu_active" className="nav-link" aria-current="page" href="/components/">Home</NavLink>
+            </NavItem>
+            <NavItem className="items">
+              <NavLink activeClassName="menu_active"   className="nav-link" href="">AntNet</NavLink>
+            </NavItem>
+            <NavItem className="items">
+              <NavLink activeClassName="menu_active"  className="nav-link" href="">Services</NavLink>
+            </NavItem>
+            <Button size="lg"   className="nav-btn" style={{color:"black"}}  onClick={()=>{
             localStorage.setItem("land",true)
             window.location.href = "/"
-          }}> Register or Login </button>
-    
-              </li>
-            </ul>
-         
-   
+          }}> Register or Login </Button>
+          </Nav>
         
-      
+        </Collapse>
+      </Navbar>
     </div>
-  
-    </div>
-    
-  </div>
-  
-</nav>
-
- </div>
- 
-      </div>
-      
-     </div>
-     
-
-
-     <section id="title" style={{background:"#200F21"}}>
-        <nav className="navbar  sticky-top">
-          <div className="brand-title">AntEagle</div>
-          <a to="" class="toggle-button">
-          <span class="tbar"></span>
-          <span class="tbar"></span>
-          <span class="tbar"></span>
-          </a>
-         
-          <div className="navbar-links"> 
-          <ul>
-              <li  style={{marginRight:"3rem"}} className="nav-item " ><NavLink  to="/" activeClassName="menu-active" aria-current="page">Home</NavLink></li>
-              <li style={{marginRight:"3rem"}} className="nav-item "><NavLink  to="/a" activeClassName="menu_active">AntNet</NavLink></li>
-              <li style={{marginRight:"3rem"}} className="nav-item "><NavLink to="/b"  activeClassName="menu_active">Home</NavLink></li>
-            </ul>
-          </div>
-          
-        </nav>
-     </section>
-      
      </>
    )
 }

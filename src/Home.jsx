@@ -2,7 +2,6 @@ import React,{useEffect} from 'react'
 import lottie from './CryptoLottie.gif'
 import Footer from './Footer'
 import NavBar  from './Navbar';
-
 import Cross from './x-button.png'
 import Checked from './checked.png'
 import Tick from './tick.png'
@@ -99,86 +98,80 @@ all.onmessage = evt => {
   }, []);
   
     return(<>
-    <NavBar />
-    <section id="header" className="d-flex align-items-center" style={{background:"#200F21"}}>
+    
+        <NavBar/>
 
-    <div className=" bar container-fluid nav_bg" >
-      <div className="row">
-      
-        <div className="col-11 mx-auto">
-        <div className="row">
-
-        
-            <div className="col-lg-6   order-2 order-lg-1 d-flex justify-content-center flex-column">
-                <h1>
-                Buy and Sell Crypto with revolutionary features
-      
-                </h1>
-                <h4 className="my-4">
-                Experience The Modern Crypto Exchange 
-                </h4>
-                <div >
-                    <NavLink to="/" style={{width:"40%"}} className=" reg btn mt-3  "  onClick={()=>{
+        <section style={{backgroundColor:"#200F21"}}>
+     
+          <div className="container" style={{paddingTop:"12rem",paddingLeft:"1.7rem"}}>
+                <div className="row"> 
+                 <div className="col-lg-6 col-md-6 ">
+                  <h1 style={{color:"whitesmoke"}}>Buy and Sell Crypto with revolutionary features</h1>
+                  <h4 style={{color:"whitesmoke"}}> Experience The Modern Crypto Exchange</h4>
+                 
+                    <button className="btn btn-lg reg-btn" type="button" onClick={()=>{
             localStorage.setItem("land",true)
             window.location.href = "/"
-          }}>Register or Login</NavLink>
-
+          }}>Register  or  Login</button>
+                  
                  </div>
-            </div>
-           <div className="col-lg-6 order-1 order-lg-2 header-img">
-              <img src={lottie} className=" lot" ></img>                
-           </div>
-           </div>
-        </div>
-    </div>
-   
-  </div> 
-         
-       
-
-        </section>
-
-        <div className="row live-price" >
-          <div class="col-lg-2 col-md-4 col-sm-6 col-6 " style={{paddingBottom:"1.2rem"}}>
-             <h4>BTC/INR </h4>
-             <h4><span style={{color:btc_per > 0 ? "green" : "red"}}>{btc_per} %</span></h4>
-             <h4 style={{color:'gold',fontSize:"1.4rem"}} class="prices">₹ {parseFloat(liveprice_BTC*conversion).toFixed(2)}</h4>
-            <h4 style={{fontSize:"1.4rem"}} >$ {parseFloat(liveprice_BTC).toFixed(2)}</h4>
+                 <div className="col-lg-6 col-md-6 ">
+                 <img src={lottie} className=" lot" ></img>     
+                 </div>
+                 </div>
               
           </div>
-          <div class="col-lg-2 col-md-4 col-sm-6  col-6" style={{paddingBottom:"1.2rem"}}>
-            <h4>BNB/INR </h4>
-             <h4><span style={{color:btc_per > 0 ? "green" : "red"}}>{bnb_per} %</span></h4>
-             <h4 style={{color:'gold',fontSize:"1.4rem"}}>₹ {parseFloat(liveprice_BNB*conversion).toFixed(2)}</h4>
-            <h4 style={{fontSize:"1.4rem"}} >$ {parseFloat(liveprice_BNB).toFixed(2)}</h4>
+        </section>
+
+
+
+       <section style={{backgroundColor:"#200F21"}}>
+
+       <div className="container live-price" style={{paddingLeft:"1.7rem"}}>
+
+       <h2 style={{color:"whitesmoke",paddingBottom:"1rem"}}>Live Prices -</h2>
+         <div className="row">
+         <div class="col-lg-4 col-md-4 col-sm-6 col-6 " style={{paddingBottom:"1.2rem"}}>
+             <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}}>BTC/INR </h4>
+             <h4><span style={{color:btc_per > 0 ? "green" : "red",fontSize:"1.2rem"}}>{btc_per} %</span></h4>
+             <h4 style={{color:'gold',fontSize:"1.2rem"}} class="prices">₹ {parseFloat(liveprice_BTC*conversion).toFixed(2)}</h4>
+            <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}} >$ {parseFloat(liveprice_BTC).toFixed(2)}</h4>
+              
           </div>
-          <div class="col-lg-2 col-md-4 col-sm-6  col-6" style={{paddingBottom:"1.2rem"}}>
-            <h4>ETH/INR </h4>
-             <h4><span style={{color:btc_per > 0 ? "green" : "red"}}>{eth_per} %</span></h4>
-             <h4 style={{color:'gold',fontSize:"1.4rem"}}>₹ {parseFloat(liveprice_ETH*conversion).toFixed(2)}</h4>
-            <h4 style={{fontSize:"1.4rem"}} >$ {parseFloat(liveprice_ETH).toFixed(2)}</h4>
+          <div className="col-lg-4 col-md-4 col-sm-6  col-6" style={{paddingBottom:"1.2rem"}}>
+            <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}}>BNB/INR </h4>
+             <h4><span style={{color:btc_per > 0 ? "green" : "red",fontSize:"1.2rem"}}>{bnb_per} %</span></h4>
+             <h4 style={{color:'gold',fontSize:"1.2rem"}}>₹ {parseFloat(liveprice_BNB*conversion).toFixed(2)}</h4>
+            <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}} >$ {parseFloat(liveprice_BNB).toFixed(2)}</h4>
           </div>
-          <div class="col-lg-2 col-md-4 col-sm-6  col-6" style={{paddingBottom:"1.2rem"}}>
-            <h4>ANTEAG/INR </h4>
-             <h4><span style={{color:btc_per > 0 ? "green" : "red"}}>{eth_per} %</span></h4>
-             <h4 style={{color:'gold',fontSize:"1.4rem"}}>₹ {parseFloat(liveprice_ETH*conversion).toFixed(2)}</h4>
-            <h4 style={{fontSize:"1.4rem"}} >$ {parseFloat(liveprice_ETH).toFixed(2)}</h4>
+          <div className="col-lg-4 col-md-4 col-sm-6  col-6" style={{paddingBottom:"1.2rem"}}>
+            <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}}>ETH/INR </h4>
+             <h4><span style={{color:btc_per > 0 ? "green" : "red",fontSize:"1.2rem"}}>{eth_per} %</span></h4>
+             <h4 style={{color:'gold',fontSize:"1.2rem"}}>₹ {parseFloat(liveprice_ETH*conversion).toFixed(2)}</h4>
+            <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}} >$ {parseFloat(liveprice_ETH).toFixed(2)}</h4>
           </div>
-          <div class="col-lg-2 col-md-4 col-sm-6  col-6" style={{paddingBottom:"1.2rem"}}>
-            <h4>EAGLE/INR </h4>
-             <h4><span style={{color:btc_per > 0 ? "green" : "red"}}>{eth_per} %</span></h4>
-             <h4 style={{color:'gold',fontSize:"1.4rem"}}>₹ {parseFloat(liveprice_ETH*conversion).toFixed(2)}</h4>
-            <h4 style={{fontSize:"1.4rem"}} >$ {parseFloat(liveprice_ETH).toFixed(2)}</h4>
+          <div className="col-lg-4 col-md-4 col-sm-6  col-6" style={{paddingBottom:"1.2rem"}}>
+            <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}}>ANTEAG/INR </h4>
+             <h4><span style={{color:btc_per > 0 ? "green" : "red",fontSize:"1.2rem"}}>{eth_per} %</span></h4>
+             <h4 style={{color:'gold',fontSize:"1.2rem"}}>₹ {parseFloat(liveprice_ETH*conversion).toFixed(2)}</h4>
+            <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}} >$ {parseFloat(liveprice_ETH).toFixed(2)}</h4>
           </div>
-          <div class="col-lg-2 col-md-4 col-sm-6  col-6" style={{paddingBottom:"1.2rem"}}>
-            <h4>EAGLEANT/INR </h4>
-             <h4><span style={{color:btc_per > 0 ? "green" : "red"}}>{eth_per} %</span></h4>
-             <h4 style={{color:'gold',fontSize:"1.4rem"}}>₹ {parseFloat(liveprice_ETH*conversion).toFixed(2)}</h4>
-            <h4 style={{fontSize:"1.4rem"}} >$ {parseFloat(liveprice_ETH).toFixed(2)}</h4>
+          <div className="col-lg-4 col-md-4 col-sm-6  col-6" style={{paddingBottom:"1.2rem"}}>
+            <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}}>EAGLE/INR </h4>
+             <h4><span style={{color:btc_per > 0 ? "green" : "red",fontSize:"1.2rem"}}>{eth_per} %</span></h4>
+             <h4 style={{color:'gold',fontSize:"1.2rem"}}>₹ {parseFloat(liveprice_ETH*conversion).toFixed(2)}</h4>
+            <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}} >$ {parseFloat(liveprice_ETH).toFixed(2)}</h4>
           </div>
+          <div className="col-lg-4 col-md-4 col-sm-6  col-6" style={{paddingBottom:"1.2rem"}}>
+            <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}}>EAGLEANT/INR </h4>
+             <h4><span style={{color:btc_per > 0 ? "green" : "red",fontSize:"1.2rem"}}>{eth_per} %</span></h4>
+             <h4 style={{color:'gold',fontSize:"1.2rem"}}>₹ {parseFloat(liveprice_ETH*conversion).toFixed(2)}</h4>
+            <h4 style={{fontSize:"1.2rem",color:"whitesmoke"}} >$ {parseFloat(liveprice_ETH).toFixed(2)}</h4>
+          </div>
+         </div>
+       </div>
+       </section> 
        
-       
-        </div>
     
 
         <section className="white-section" id="features">
@@ -377,9 +370,11 @@ all.onmessage = evt => {
   
       </div>
 
-</section>
+</section> 
+
 <section id="gstarted">
-           <h1>Get started with 3 steps</h1>
+<div className="container">
+           <h1 style={{color:"whitesmoke"}}>Get started with 3 steps</h1>
 <div className="row">
         <div className="gstarted-box col-lg-4 col-md-4 ">
           <img src={User} style={{paddingBottom:"1rem"}}></img>
@@ -399,11 +394,12 @@ all.onmessage = evt => {
         
   
       </div>
-</section>
+      </div>
+</section> 
 
         
+       <Footer/>     
 
-<Footer />
     </>
    
     );
